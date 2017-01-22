@@ -25,7 +25,7 @@ typedef struct{
     float cpu_MHz;
 }CPU_INFO;
 
-int get_cpu_occupied(CPU_OCCUPY *cpu);
+void get_cpu_occupied(CPU_OCCUPY *cpu);
 
 unsigned int get_cpu_num();
 

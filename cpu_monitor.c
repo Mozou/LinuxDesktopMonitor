@@ -3,22 +3,46 @@
 //
 
 #include "cpu_monitor.h"
+#include <stdio.h>
 
-int get_cpu_occupied(CPU_OCCUPY *cpu)
+void get_cpu_occupied(CPU_OCCUPY *cpu)
 {
     FILE *file;
-    char buff[256];
+    char buff[128];
 
     file = fopen("/proc/stat", "r");
-    if(file == NULL){
-        fprintf(stderr, "open file error");
-        return -1;
+    if(file == NULL)
+        perror("open cpu occupy file error\n");
+
+    int cpu_num = -1;
+    while (fgets(buff, sizeof(buff), file) != NULL)
+    {
+        if(buff[0] == 'c') {
+            cpu_num++;
+            printf("%s", buff);
+        } else break;
+    }
+    printf("cpu nums:%d", cpu_num);
+
+    return 0;
+}
+
+unsigned int get_cpu_num()
+{
+    FILE *file;
+    char buff[128];
+
+    file = fopen("/proc/stat", "r");
+    if(file == NULL)
+        perror("open cpu occupy file error\n");
+
+    int cpu_num = -1;
+    while (fgets(buff, sizeof(buff), file) != NULL)
+    {
+        if(buff[0] == 'c') {
+            cpu_num++;
+        } else break;
     }
 
-    fgets(buff, sizeof(buff), file);
-
-    sscanf(buff, "%s %u %u %u", cpu->name, &cpu->user, &cpu->nice, &cpu->system);
-
-    fclose(file);
-    return 0;
+    return cpu_num;
 }
