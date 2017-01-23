@@ -10,14 +10,17 @@
 
 
 typedef struct data{
-    char name[10];
-    unsigned int user;//    cpu_stat's user field
-    unsigned int nice;//    cpu_stat's nice field
-    unsigned int system;//  cpu_stat's sys field
-    unsigned int idle;//    cpu_stat's idle field
-    unsigned int irq;//     cpu_stat's irq field
-    unsigned int softirq;//  cpu_stat's softirq field
-}CPU_OCCUPY;
+    char name[6];
+    int user;//    cpu_stat's user field
+    int nice;//    cpu_stat's nice field
+    int system;//  cpu_stat's sys field
+    int idle;//    cpu_stat's idle field
+    int iowait;
+    int irq;//     cpu_stat's irq field
+    int softirq;// cpu_stat's softirq field
+    int stealstolen;
+    int guest;
+}CPU_OCCUPY;// CPU snapshot data
 
 typedef struct{
     unsigned int processer_num;
@@ -25,7 +28,7 @@ typedef struct{
     float cpu_MHz;
 }CPU_INFO;
 
-void get_cpu_occupied(CPU_OCCUPY *cpu);
+void get_cpu_occupy(CPU_OCCUPY *cpu);
 
 unsigned int get_cpu_num();
 
