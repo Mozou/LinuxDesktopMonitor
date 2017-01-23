@@ -33,6 +33,8 @@ void get_cpu_occupy(CPU_OCCUPY *cpu);
 
 unsigned int get_cpu_num();
 
-float get_cpu_usage();
+float get_cpu_usage(int sec);
+
+
 
 #endif //CPU_MONITOR_H

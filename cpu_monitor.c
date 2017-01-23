@@ -80,7 +80,8 @@ unsigned int get_cpu_num()
     return cpu_num;
 }
 
-float get_cpu_usage()
+
+float get_cpu_usage(int sec)
 {
 //    CPU_OCCUPY *cpu1;
 //    CPU_OCCUPY *cpu2;
@@ -96,7 +97,7 @@ float get_cpu_usage()
     CPU_OCCUPY cpu2;
 
     get_cpu_occupy(&cpu1);
-    sleep(5);
+    sleep(sec);
     get_cpu_occupy(&cpu2);
 
     int totalCpuTime1 = cpu1.user + cpu1.nice + cpu1.system + cpu1.idle +
@@ -109,6 +110,7 @@ float get_cpu_usage()
 
     int idle = cpu2.idle - cpu1.idle;
 
+    float usage = (float) (total - idle)  / total;
 
-    return (total - idle)  / total;
+    return  usage;
 }
