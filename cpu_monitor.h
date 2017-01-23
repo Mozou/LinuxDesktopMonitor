@@ -11,6 +11,7 @@
 
 typedef struct data{
     char name[6];
+
     int user;//    cpu_stat's user field
     int nice;//    cpu_stat's nice field
     int system;//  cpu_stat's sys field
@@ -31,5 +32,7 @@ typedef struct{
 void get_cpu_occupy(CPU_OCCUPY *cpu);
 
 unsigned int get_cpu_num();
+
+float get_cpu_usage();
 
 #endif //CPU_MONITOR_H

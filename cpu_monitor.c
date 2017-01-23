@@ -24,25 +24,34 @@ void get_cpu_occupy(CPU_OCCUPY *cpu_occupy)
     char *p;
 
     p = strtok(buff, " ");
-    printf("%s\n", p);
+    strcpy(cpu_occupy->name, p);//name
+
     p = strtok(NULL, " ");
-    printf("%d\n", atoi(p));//user
+    cpu_occupy->user = atoi(p);//user
+
     p = strtok(NULL, " ");
-    printf("%d\n", atoi(p));//nice
+    cpu_occupy->nice = atoi(p);//nice
+
     p = strtok(NULL, " ");
-    printf("%d\n", atoi(p));//system
+    cpu_occupy->system = atoi(p);//system
+
     p = strtok(NULL, " ");
-    printf("%d\n", atoi(p));//idle
+    cpu_occupy->idle = atoi(p);//idle
+
     p = strtok(NULL, " ");
-    printf("%d\n", atoi(p));//iowait
+    cpu_occupy->iowait = atoi(p);//iowait
+
     p = strtok(NULL, " ");
-    printf("%d\n", atoi(p));//irq
+    cpu_occupy->irq = atoi(p);//irq
+
     p = strtok(NULL, " ");
-    printf("%d\n", atoi(p));//softirq
+    cpu_occupy->softirq = atoi(p);//softirq
+
     p = strtok(NULL, " ");
-    printf("%d\n", atoi(p));//stealstolen
+    cpu_occupy->stealstolen = atoi(p);//stealstolen
+
     p = strtok(NULL, " ");
-    printf("%d\n", atoi(p));//guest
+    cpu_occupy->guest = atoi(p);//guest
 //    cpu_occupy->user = atoi(p);
 //    printf("%d\n", cpu_occupy->user);
 
@@ -71,8 +80,8 @@ unsigned int get_cpu_num()
     return cpu_num;
 }
 
-//float get_cpu_usage()
-//{
+float get_cpu_usage()
+{
 //    CPU_OCCUPY *cpu1;
 //    CPU_OCCUPY *cpu2;
 //
@@ -82,6 +91,24 @@ unsigned int get_cpu_num()
 //
 //    int totalCpuTime1 = cpu1->user + cpu1->nice + cpu1->system + cpu1->idle +
 //            cpu1->iowait + cpu1->irq + cpu1->softirq + cpu1->stealstolen + cpu1->guest;
-//
-//
-//}
+
+    CPU_OCCUPY cpu1;
+    CPU_OCCUPY cpu2;
+
+    get_cpu_occupy(&cpu1);
+    sleep(5);
+    get_cpu_occupy(&cpu2);
+
+    int totalCpuTime1 = cpu1.user + cpu1.nice + cpu1.system + cpu1.idle +
+            cpu1.iowait + cpu1.irq + cpu1.softirq + cpu1.stealstolen + cpu1.guest;
+
+    int totalCpuTime2 = cpu2.user + cpu2.nice + cpu2.system + cpu2.idle +
+            cpu2.iowait + cpu2.irq + cpu2.softirq + cpu2.stealstolen + cpu1.guest;
+
+    int total = totalCpuTime2 - totalCpuTime1;
+
+    int idle = cpu2.idle - cpu1.idle;
+
+
+    return (total - idle)  / total;
+}
