@@ -29,11 +29,15 @@ typedef struct{
     float cpu_MHz;
 }CPU_INFO;
 
-void get_cpu_occupy(CPU_OCCUPY *cpu);
+void get_totalcpu_occupy(CPU_OCCUPY *cpu);
+
+void get_cpus_occupy(CPU_OCCUPY *cpus, int cpu_nums);
 
 unsigned int get_cpu_num();
 
-float get_cpu_usage(int sec);
+float get_totalcpu_usage(int sec);
+
+float get_cpus_usage(float *cpu_usage, int cpu_nums ,int sec);//return total and each cpu's usage
 
 
 
