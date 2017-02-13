@@ -11,7 +11,6 @@
 
 typedef struct data{
     char name[6];
-
     int user;//    cpu_stat's user field
     int nice;//    cpu_stat's nice field
     int system;//  cpu_stat's sys field
@@ -37,7 +36,11 @@ unsigned int get_cpu_num();
 
 float get_totalcpu_usage(int sec);
 
-float get_cpus_usage(float *cpu_usage, int cpu_nums ,int sec);//return total and each cpu's usage
+//return total and each cpu's usage
+//cpu nums are actual cpu nums
+//first point of cpu_usage array filled with total cpu info & usage
+//rest filled with each physical cpu info & usage
+float get_cpus_usage(float *cpu_usage, int cpu_nums ,int sec);
 
 
 

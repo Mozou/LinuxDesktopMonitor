@@ -22,4 +22,6 @@ float get_physical_usage();
 
 float get_tf_usage(char *dir);  //get designated directory capacity
 
+void log_hd_info(char *dir);
+
 #endif //MEMORY_MONITOR_H

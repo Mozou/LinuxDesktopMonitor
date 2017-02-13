@@ -2,8 +2,8 @@
 // Created by hu shaoyu on 17-2-5.
 //
 
-#ifndef PROCESS_PROCESS_H
-#define PROCESS_PROCESS_H
+#ifndef PROCESS_H
+#define PROCESS_H
 typedef struct {
     int pid;
     char process_name[16];

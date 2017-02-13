@@ -2,10 +2,8 @@
 // Created by hu on 1/20/17.
 //
 
-#include "cpu_monitor.h"
-#include <stdio.h>
+#include "cpu.h"
 #include <string.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 void get_totalcpu_occupy(CPU_OCCUPY *cpu_occupy)
@@ -158,7 +156,7 @@ float get_cpus_usage(float *cpu_usage, int cpu_nums ,int sec)
 
     for (int i = 0; i <count ; ++i) {
         int totalTime1 = cpu_occupy1[i].user + cpu_occupy1[i].nice + cpu_occupy1[i].system + cpu_occupy1[i].idle +
-                cpu_occupy1[i].iowait + cpu_occupy1[i].irq + cpu_occupy1[i].softirq + cpu_occupy1[i].stealstolen + cpu_occupy1[i].guest;
+                         cpu_occupy1[i].iowait + cpu_occupy1[i].irq + cpu_occupy1[i].softirq + cpu_occupy1[i].stealstolen + cpu_occupy1[i].guest;
         int totalTime2 = cpu_occupy2[i].user + cpu_occupy2[i].nice + cpu_occupy2[i].system + cpu_occupy2[i].idle +
                          cpu_occupy2[i].iowait + cpu_occupy2[i].irq + cpu_occupy2[i].softirq + cpu_occupy2[i].stealstolen + cpu_occupy2[i].guest;
         int total = totalTime2 - totalTime1;
